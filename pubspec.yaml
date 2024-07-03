@@ -66,6 +66,17 @@ flutter:
 
   assets:
     - images/orderSucessful.jpg
+    - images/alanwake.jpeg
+    - images/apexlegends.jpeg
+    - images/cyberpunk.jpeg
+    - images/farcry.jpeg
+    - images/frozahorizon.jpeg
+    - images/gtav.jpeg
+    - images/lastofus.jpeg
+    - images/reddead.jpeg
+    - images/residentevil.jpeg
+    - images/spiderman.jpeg
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

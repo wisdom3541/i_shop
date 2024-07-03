@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
+          automaticallyImplyLeading: false,
         ),
         bottomNavigationBar: NavigationBar(
           backgroundColor: Colors.cyan,
@@ -138,6 +143,7 @@ Widget productList(MyCallback onTap) {
                 },
                 child: Container(
                   child: listCard(
+                      products[index].image,
                       products[index].name,
                       products[index].description,
                       products[index].rating,
@@ -160,7 +166,7 @@ Widget productList(MyCallback onTap) {
   );
 }
 
-Widget listCard(String productName, String description, double rating,
+Widget listCard(String image, productName, String description, double rating,
     double price, bool visible) {
   return Card(
     color: Colors.blueGrey,
@@ -168,10 +174,14 @@ Widget listCard(String productName, String description, double rating,
     child: Padding(
       padding: const EdgeInsets.all(5.0),
       child: Row(children: [
-        const Placeholder(
+        Placeholder(
           child: SizedBox(
-            height: 125,
+            height: 150,
             width: 150,
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(
@@ -191,6 +201,7 @@ Widget listCard(String productName, String description, double rating,
               ),
               Text(
                 description,
+                maxLines: 2,
                 style: const TextStyle(color: Colors.white),
               ),
               Text(
@@ -297,10 +308,13 @@ class _CheckoutState extends State<Checkout> {
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Row(children: [
-                                const Placeholder(
+                                Placeholder(
                                   child: SizedBox(
-                                    height: 125,
+                                    height: 155,
                                     width: 150,
+                                    child: Image.asset(
+                                        fit: BoxFit.cover,
+                                        _checkoutProductList[index].image),
                                   ),
                                 ),
                                 const SizedBox(
@@ -322,11 +336,12 @@ class _CheckoutState extends State<Checkout> {
                                       ),
                                       Text(
                                         _checkoutProductList[index].description,
+                                        maxLines: 2,
                                         style: const TextStyle(
                                             color: Colors.white),
                                       ),
                                       Text(
-                                        "$rating",
+                                        "Rating: $rating",
                                         style: const TextStyle(
                                             color: Colors.white),
                                       ),
@@ -394,7 +409,10 @@ class _CheckoutState extends State<Checkout> {
                           shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: const Text("Place your Order"),
+                          child: const Text("Place your Order",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
                         ),
                       ),
                     ),
@@ -427,9 +445,47 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(
-          "images/orderSucessful.jpg",
-        ),
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 400,
+                width: 400,
+                child: Image.asset(
+                  "images/orderSucessful.jpg",
+                ),
+              ),
+              const SizedBox(
+                height: 60,
+                width: double.infinity,
+              ),
+              const Text(
+                "Order Sucessful",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: MaterialButton(
+                  minWidth: double.infinity,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const MyHomePage(title: "iShop")));
+                  },
+                  color: Colors.cyan,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: const Text("Back to Home",
+                      style: TextStyle(
+                        color: Colors.white,
+                      )),
+                ),
+              ),
+            ]),
       ),
     );
   }
@@ -440,11 +496,12 @@ class OrderPage extends StatelessWidget {
 //data class for the products
 class ProductDetails {
   const ProductDetails(
-      {required this.name,
+      {required this.image,
+      required this.name,
       required this.description,
       required this.rating,
       required this.price});
-
+  final String image;
   final String name;
   final String description;
   final double rating;
@@ -454,38 +511,63 @@ class ProductDetails {
 //dummy list of products
 List<ProductDetails> products = [
   const ProductDetails(
+      image: "images/gtav.jpeg",
       name: "GTA VI",
       description: "A free world action-adventure game",
       rating: 4.8,
       price: 20),
   const ProductDetails(
+      image: "images/reddead.jpeg",
       name: "Red Dead Redemption",
       description: "A western action-adventure game ",
       rating: 4,
       price: 15),
   const ProductDetails(
+      image: "images/apexlegends.jpeg",
       name: "Apex Legends",
       description: "A battle royale-hero shooter multiplayer game",
       rating: 4.5,
       price: 10),
   const ProductDetails(
+      image: "images/spiderman.jpeg",
       name: "SpiderMan 2 Remastered",
       description: "A super hero action-adventure game",
       rating: 4,
       price: 9.99),
   const ProductDetails(
-      name: "Last Of Us", description: "description", rating: 4, price: 15),
+      image: "images/lastofus.jpeg",
+      name: "Last Of Us",
+      description: "A post Apocaliptic survival action game ",
+      rating: 4,
+      price: 15),
   const ProductDetails(
-      name: "Alan Wake", description: "description", rating: 3.5, price: 9.99),
+      image: "images/alanwake.jpeg",
+      name: "Alan Wake",
+      description: "A horror action-adventure game",
+      rating: 3.5,
+      price: 9.99),
   const ProductDetails(
-      name: "Froza Horizon", description: "description", rating: 3.5, price: 5),
+      image: "images/frozahorizon.jpeg",
+      name: "Froza Horizon",
+      description: "A 2021 racing video game",
+      rating: 3.5,
+      price: 5),
   const ProductDetails(
-      name: "FarCry 6", description: "description", rating: 4.5, price: 15),
+      image: "images/farcry.jpeg",
+      name: "FarCry 6",
+      description: "A first-person shooter suvival action game",
+      rating: 4.5,
+      price: 15),
   const ProductDetails(
+      image: "images/residentevil.jpeg",
       name: "Resident Evil 4",
-      description: "description",
+      description: "A Japanese survival horror game series",
       rating: 4,
       price: 9.99),
   const ProductDetails(
-      name: "Cyperpunk", description: "description", rating: 3.9, price: 10),
+      image: "images/cyberpunk.jpeg",
+      name: "Cyperpunk",
+      description: "A action role-playing video game",
+      rating: 3.9,
+      price: 10),
 ];
