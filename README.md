@@ -16,10 +16,10 @@ A NPC type shopping application project.
 ![Order Success](https://github.com/wisdom3541/i_shop/blob/main/ss2.png))
 
 ## Appetizer Link:
-![Appetizer Link](https://appetize.io/app/b_boy55ticuayudzjpdzt647fafi)
+!(https://appetize.io/app/b_boy55ticuayudzjpdzt647fafi)
 
 ## Apk Link:
-![Appetizer Link](https://github.com/wisdom3541/i_shop/blob/main/ishop.apk)
+!(https://github.com/wisdom3541/i_shop/blob/main/ishop.apk)
 
 
 ## Implementations:
