@@ -4,9 +4,10 @@ A NPC type shopping application project.
 
 ## Navigating through the App:
 
-Tap on each item to add to cart
-remove items from cart by clicking cancal icon.
-Order using the order button.
+* Tap on each item to add to cart
+* Remove items from cart by clicking cancal icon.
+* Order using the order button.
+* Return back to home page.
 
 ## Screenshots:
 ![Product Page](https://github.com/wisdom3541/i_shop/blob/main/ss1.png))
@@ -18,3 +19,10 @@ Order using the order button.
 ![Appetizer Link](https://appetize.io/app/b_boy55ticuayudzjpdzt647fafi)
 
 ## Apk Link:
+![Appetizer Link](https://github.com/wisdom3541/i_shop/blob/main/ishop.apk)
+
+
+## Implementations:
+
+* Stateful and Stateless Widget
+* typedef Callback type
