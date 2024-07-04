@@ -1,8 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +23,7 @@ class MyApp extends StatelessWidget {
 
 typedef MyCallback = void Function(ProductDetails parameter);
 
+//main app homePage
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -100,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//BottomNav Items
 var bottomNav = const [
   NavigationDestination(icon: Icon(Icons.shop), label: "Products"),
   NavigationDestination(icon: Icon(Icons.shop), label: "Checkout")
@@ -130,6 +128,7 @@ class Product extends StatelessWidget {
   }
 }
 
+//List Widget for Product page
 Widget productList(MyCallback onTap) {
   return Column(
     children: [
@@ -149,23 +148,13 @@ Widget productList(MyCallback onTap) {
                       products[index].rating,
                       products[index].price,
                       false),
-                ) //() {
-                //   //add clicked item to cart
-                //   state._addToCart(products[index]);
-                //   //show added to card snackBar
-                //   const snack = SnackBar(
-                //     content: Text("Product as been added to cart"),
-                //     duration: Duration(seconds: 1),
-                //     // behavior: SnackBarBehavior.floating ,
-                //   );
-                //   ScaffoldMessenger.of(context).showSnackBar(snack);
-                // },
-                );
+                ));
           }),
     ],
   );
 }
 
+//Card display for listWidget
 Widget listCard(String image, productName, String description, double rating,
     double price, bool visible) {
   return Card(
@@ -224,12 +213,8 @@ Widget listCard(String image, productName, String description, double rating,
         Visibility(
             visible: visible,
             child: IconButton(
-              onPressed: () {
-                //removes product from cart
-                //state.removeFromCart(products[index]);
-              },
+              onPressed: () {},
               icon: const Icon(Icons.cancel),
-              //iconSize: 100,
             ))
       ]),
     ),
@@ -364,32 +349,14 @@ class _CheckoutState extends State<Checkout> {
                                       onPressed: () {
                                         removeFromCart(
                                             _checkoutProductList[index]);
-                                        //removes product from cart
-                                        //state.removeFromCart(products[index]);
                                       },
                                       icon: const Icon(Icons.cancel),
                                       //iconSize: 100,
                                     ))
                               ]),
                             ),
-                          )
-
-                              // listCard(
-                              //     ,
-                              //     _checkoutProductList[index].description,
-                              //     _checkoutProductList[index].rating,
-                              //     _checkoutProductList[index].price,
-                              //     true),
-                              ),
+                          )),
                         );
-                        // IconButton(
-                        //   onPressed: () {
-                        //     //removes product from cart
-                        //     state.removeFromCart(products[index]);
-                        //   },
-                        //   icon: const Icon(Icons.cancel),
-                        //   iconSize: 100,
-                        // )
                       }),
                   SizedBox(
                     width: double.infinity,
@@ -427,6 +394,7 @@ class _CheckoutState extends State<Checkout> {
   }
 }
 
+//snackBar
 void createSnackBar(BuildContext context, String message) {
   //show  snackBar
   var snack = SnackBar(
