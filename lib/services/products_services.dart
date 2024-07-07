@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:i_shop/model/product_details_model.dart';
 import 'package:http/http.dart' as http;
@@ -10,12 +11,13 @@ class ProductsServices {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       var productsJson = jsonResponse['items'] as List;
-      return productsJson
+      productsJson.shuffle(Random());
+      var details = productsJson
           .map((productJson) => MainProductDetails.fromJson(productJson))
           .toList();
+
+      return details;
     } else {
-      print('Failed to load data: ${response.statusCode}');
-      print('Response body: ${response.body}');
       throw Exception('Failed to load products');
     }
   }

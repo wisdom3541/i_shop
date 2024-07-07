@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:i_shop/model/product_details_model.dart';
 import 'package:i_shop/services/products_services.dart';
 
+/// ignore this file...old implementations
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
