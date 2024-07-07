@@ -4,10 +4,7 @@ A NPC type shopping application project.
 
 ## Navigating through the App:
 
-* Tap on each item to add to cart
-* Remove items from cart by clicking cancal icon.
-* Order using the order button.
-* Return back to home page.
+
 
 ## Screenshots:
 ![Product Page](https://github.com/wisdom3541/i_shop/blob/main/ss1.png))
